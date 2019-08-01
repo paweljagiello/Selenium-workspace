@@ -9,15 +9,15 @@ import pages.HomePage;
 import pages.MobilePage;
 import pages.ProductPage;
 
+
 import java.util.concurrent.TimeUnit;
-
 import static org.junit.Assert.assertEquals;
+// Test ma na celu sprawdzenie czy cena w liście wyboru urządzenia zgadza się z ceną po przejściu w "szczegóły".
 
-
-public class ProductsQtyErrTEST {
+public class ListAndDetailsPriceVerificationTEST {
     private WebDriver driver;
     private String baseURL = "http://live.guru99.com";
-// Test ma na celu sprawdzenie czy cena w liście wyboru urządzenia zgadza się z ceną po przejściu w "szczegóły".
+
 
     @Before//Ustawienie przeglądarki
     public void setUp() {
@@ -26,32 +26,29 @@ public class ProductsQtyErrTEST {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(baseURL);
     }
+
     @After//Zamknięcie przeglądarki
     public void browserClose() {
         driver.close();
     }
 
     @Test
-    public void OverloadQtyErrorMsgTEST() {
-        //Zainicjowanie zmiennej i przypisanie jej treści oczekiwanego komunikatu
-        String expectedErrorMsg = "Some of the products cannot be ordered in requested quantity.";
+    public void ListAndProductPagePricesTES() {
         HomePage hp = new HomePage(driver);
-        //Przejście do zakładki MOBILE i dodanie do koszyka produktu.
+        // Zwykłe porównanie dwóch wartości
         hp.GoMobile();
-        MobilePage mp = new MobilePage(driver);
-        mp.AddRandomToBasket();
-        //Zmiana ilości zamawianego produktu na 1000 oraz zatwierdzenie zmian
-        ProductPage pg = new ProductPage(driver);
-        pg.ChangeQty("1000");
-        pg.AddToCart();
+        MobilePage mp =new MobilePage(driver);
+        String listPrice = mp.GetProductPrice();
+        mp.GoProductPage();
+        ProductPage pp=new ProductPage(driver);
 
-        //Pobranie treści błędu, który pojawił się po zmianie ilości oraz porównanie z oczekiwanym.
         try {
-            assertEquals(expectedErrorMsg, pg.GetErrorMsg());
+            assertEquals(listPrice, pp.GetProductPrice());
         } catch (Exception e){
             e.printStackTrace();
         }
 
     }
+
 
 }

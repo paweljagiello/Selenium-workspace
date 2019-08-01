@@ -35,7 +35,7 @@ public class CompareTEST {
     public void ComparitionVerification() {
 
         HomePage hp = new HomePage(driver);
-        hp.goMobile();
+        hp.GoMobile();
 
         //Po przejściu do zakładki "Mobile" dodaję do porównania 2 produkty i zatwierdzam porównanie.
         MobilePage mp = new MobilePage(driver);

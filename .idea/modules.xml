@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BankTests/src/tests/tests.iml" filepath="$PROJECT_DIR$/BankTests/src/tests/tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EcommerceTests/src/tests/tests1.iml" filepath="$PROJECT_DIR$/EcommerceTests/src/tests/tests1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testyMorele/src/tests/tests2.iml" filepath="$PROJECT_DIR$/testyMorele/src/tests/tests2.iml" />
+    </modules>
+  </component>
+</project>

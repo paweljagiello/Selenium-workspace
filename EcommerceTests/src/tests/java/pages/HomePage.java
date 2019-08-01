@@ -1,75 +1,43 @@
 package pages;
 
-import Functions.GetDoubleFromStringPrice;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
-//Wszystkie lokatory i metody strony HomePage.
 public class HomePage {
 
     WebDriver driver;
+
     By mobile =By.xpath("/html/body/div[1]/div/header/div/div[3]/nav/ol/li[1]/a");
     By tv =By.xpath("/html/body/div[1]/div/header/div/div[3]/nav/ol/li[2]/a");
     By account =By.xpath("/html/body/div[1]/div/header/div/div[2]/div/a/span[2]");
     By cart = By.xpath("/html/body/div[1]/div/header/div/div[2]/div/div/a/span[2]");
+    By pageTitle = By.className("page-title");
+    By register = By.xpath("/html/body/div[1]/div/header/div/div[5]/div/ul/li[5]/a");
+    By logIn = By.xpath("//*[@id=\"header-account\"]/div/ul/li[6]/a");
 
     public HomePage(WebDriver driver){
         this.driver = driver;
     }
 
-    public void goMobile (){
-        driver.findElement()
+    public void GoMobile(){
+        driver.findElement(mobile).click();
     }
-    public void SearchwithCat(String text, String cat){
-        Select categoryDropdown = new Select(driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div/div/div/div[2]/div/div[1]/form/div/div/div[1]/div/div[1]/select")));
-
-        driver.findElement(searchBox).sendKeys(text);
-        categoryDropdown.selectByVisibleText(cat);
-        driver.findElement(confirmButton).submit();
+    public void GoTV(){
+        driver.findElement(tv).click();
     }
-
-    public void SearchwithoutCat(String text){
-
-        driver.findElement(searchBox).sendKeys(text);
-        driver.findElement(confirmButton).submit();
+    public void GoRegisterAccount(){
+        driver.findElement(account).click();
+        driver.findElement(register).click();
     }
-
-
-    public void GoPickupPoints(){
-        driver.findElement(pickupPoints).click();
+    public void GoLogin(){
+        driver.findElement(account).click();
+        driver.findElement(logIn).click();
     }
-
-    public void GoContact(){
-        driver.findElement(contact).click();
-    }
-
-    public void GoWishList(){
-        driver.findElement(wishList).click();
-    }
-
-    public void GoAccountDetails(){
-        driver.findElement(accountDetails).click();
-    }
-
     public void GoCart(){
         driver.findElement(cart).click();
     }
-
-    public void CopyPromoCode(){
-        driver.findElement(copyPromoCodeButton).click();
-    }
-
-    public double GetCartAmount(){
-        GetDoubleFromStringPrice gd =new GetDoubleFromStringPrice();
-
-        return gd.StrToDouble(driver.findElement(cartAmount).getText());
-    }
-
-    public void ChooseCategory(WebElement category){
-        category.click();
+    public String GetPageTitle(){
+       return driver.findElement(pageTitle).getText();
     }
 
 }
